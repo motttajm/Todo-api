@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var PORT = process.env.PORT || 3000;
+
 var todos = [{
 	id: 1, 
 	description: 'Meet Mom for lunch',
@@ -38,6 +39,6 @@ app.get('/todos/:id', function (req, res) {
 	}
 });
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
 	console.log('Express listening on port ' + PORT + '!');
 });
