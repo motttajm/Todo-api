@@ -63,8 +63,6 @@ app.post('/todos', function(req, res) {
 
 
 	db.todo.create(body).then(function (todo) {
-		//todos.push(todo);
-		//res.status(200).send();
 		res.json(todo.toJSON());
 	}, function (e) {
 		res.status(400).json(e);
