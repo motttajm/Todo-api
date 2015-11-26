@@ -131,7 +131,7 @@ app.post('/users', function (req, res) {
 	var body = _.pick(req.body, 'email', 'password');	//filter data that was sent into request. Pick will select only the attributes you want
 
 	db.user.create(body).then(function (user) {
-		res.json(user.toJSON());	//success
+		res.json(user.toPublicJSON());	//success
 	}, function (e) {
 		res.status(400).json(e);	//failure
 	});
