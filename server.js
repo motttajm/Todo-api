@@ -3,7 +3,6 @@ var bodyParser = require('body-parser');
 var _ = require('underscore');
 var db = require('./db.js');
 
-
 var app = express();
 var PORT = process.env.PORT || 3000;
 var todos = [];
@@ -65,9 +64,9 @@ app.post('/todos', function(req, res) {
 	var body = _.pick(req.body, 'description', 'completed');
 
 	db.todo.create(body).then(function(todo) {
-		res.json(todo.toJSON());
+		res.json(todo.toJSON());	//success
 	}, function(e) {
-		res.status(500).json(e);
+		res.status(500).json(e);	//failure
 	});
 });
 
@@ -124,6 +123,17 @@ app.put('/todos/:id', function(req, res) {
 	}, function() {
 		//findByID fails
 		res.status(500).send();
+	});
+});
+
+//POST /users
+app.post('/users', function (req, res) {
+	var body = _.pick(req.body, 'email', 'password');	//filter data that was sent into request. Pick will select only the attributes you want
+
+	db.user.create(body).then(function (user) {
+		res.json(user.toJSON());	//success
+	}, function (e) {
+		res.status(400).json(e);	//failure
 	});
 });
 
