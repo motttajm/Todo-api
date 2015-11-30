@@ -121,7 +121,7 @@ app.put('/todos/:id', middleware.requireAuthentication, function(req, res) {
 
 	db.todo.findOne({
 		where: {
-			id: todoID, 
+			id: updateID, 
 			userId: req.user.get('id')
 		}
 	}).then(function(todo) {
